@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<timestamp key="byDay" datePattern="yyyy-MM-dd" />
+	<jmxConfigurator />
+	<appender name="RootConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[e3-cart]%date %level %10logger [%file:%line] %msg%n</pattern>
+		</layout>
+	</appender>
+
+	<appender name="RootFileAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>d:/logs/e3-cart.log</file>
+		<append>true</append>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>d:/logs/e3-cart.%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+			<maxHistory>7</maxHistory>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[e3-cart]%date %level [%thread] %10logger [%file:%line] %msg%n
+			</pattern>
+		</layout>
+	</appender>
+	<root>
+		<level value="debug" />
+		<appender-ref ref="RootFileAppender" />
+		<appender-ref ref="RootConsoleAppender" />
+		<!-- <appender-ref ref="DB" /> -->
+	</root>
+		
+	<!-- 下面配置一些具体包的日志过滤级别 -->
+	<!-- <logger name="java.sql.ResultSet" level="debug" />
+	<logger name="org.apache.ibatis" level="debug" />
+	<logger name="java.sql.PreparedStatement" level="debug" />
+	<logger name="java.sql.Connection" level="debug" /> -->
+
+</configuration>
